@@ -62,11 +62,6 @@ before-all = [
   "yum install -y lldb || echo 'lldb is not available'",
 ]
 
-[tool.cibuildwheel.musllinux]
-before-all = [
-  "apk add libunwind-dev lz4-dev gdb lldb",
-]
-
 [tool.cibuildwheel.macos]
 before-all = [
   "git clone --depth 1 --branch v1.9.4 https://github.com/lz4/lz4 lz4",
@@ -96,3 +91,11 @@ omit = [
 [tool.coverage.report]
 skip_covered = true
 show_missing = true
+
+
+# Override the default linux before-all for musl linux
+[[tool.cibuildwheel.overrides]]
+select = "*-musllinux*"
+before-all = [
+  "apk add --update libunwind-dev lz4-dev gdb lldb",
+]
