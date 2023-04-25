@@ -48,7 +48,6 @@ exclude="tests/integration/(native_extension|multithreaded_extension)/"
 
 [tool.cibuildwheel]
 build = ["cp38-*", "cp39-*", "cp310-*", "cp311-*"]
-skip = "*musllinux*"
 manylinux-x86_64-image = "manylinux2014"
 manylinux-i686-image = "manylinux2014"
 
@@ -61,6 +60,11 @@ manylinux-i686-image = "manylinux2010"
 before-all = [
   "yum install -y libunwind-devel lz4-devel gdb",
   "yum install -y lldb || echo 'lldb is not available'",
+]
+
+[tool.cibuildwheel.musllinux]
+before-all = [
+  "apk add libunwind-dev lz4-dev gdb lldb",
 ]
 
 [tool.cibuildwheel.macos]
