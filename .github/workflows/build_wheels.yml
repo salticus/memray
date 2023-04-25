@@ -76,7 +76,7 @@ jobs:
           path: dist
       - name: Set up dependencies
         run: |
-          apk add --update alpine-sdk bash alpine-sdk python3 python3-dev gdb musl-dbg python3-dbg
+          apk add --update bash alpine-sdk python3 python3-dev gdb musl-dbg python3-dbg
       - name: Install Python dependencies
         run: |
           python3 -m venv venv
